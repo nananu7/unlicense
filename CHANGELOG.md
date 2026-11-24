@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Fixed
+- Fix DLL unpacking by safely releasing loader lock on x86 and x64
 - Set spawned process working directory and absolute path to allow resolving local dependencies
 
 ## [0.4.0] - 2023-08-14
