@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+### Fixed
+- Set spawned process working directory and absolute path to allow resolving local dependencies
 
 ## [0.4.0] - 2023-08-14
 ### Added
