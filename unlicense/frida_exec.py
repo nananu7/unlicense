@@ -159,14 +159,16 @@ def spawn_and_instrument(
         pe_path: Path, text_section_ranges: List[MemoryRange],
         notify_oep_reached: OepReachedCallback) -> ProcessController:
     pid: int
+    target_cwd = str(pe_path.parent.absolute())
     if pe_path.suffix == ".dll":
         # Use `rundll32` to load the DLL
         rundll32_path = "C:\\Windows\\System32\\rundll32.exe"
         pid = frida.spawn(
             rundll32_path,
-            [rundll32_path, str(pe_path.absolute()), "#0"])
+            [rundll32_path, str(pe_path.absolute()), "#0"],
+            cwd=target_cwd)
     else:
-        pid = frida.spawn(str(pe_path))
+        pid = frida.spawn(str(pe_path.absolute()), cwd=target_cwd)
 
     main_module_name = pe_path.name
     session = frida.attach(pid)
